@@ -1,4 +1,5 @@
 #!/usr/bin/env fish
-set script_dir (realpath (dirname (status --current-filename)))
 
-bass source $script_dir/git-modified
+function git-modified
+    git ls-files | xargs -I{} git log -1 --format="%ai {}" {}
+end
